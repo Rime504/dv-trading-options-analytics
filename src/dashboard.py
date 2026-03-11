@@ -5,7 +5,10 @@ Deploy: streamlit run dashboard.py
 
 import sys
 import os
-sys.path.insert(0, os.path.dirname(__file__))
+# Ensure src/ is on path whether running locally or via Streamlit Cloud
+_src = os.path.dirname(os.path.abspath(__file__))
+if _src not in sys.path:
+    sys.path.insert(0, _src)
 
 import streamlit as st
 import numpy as np
